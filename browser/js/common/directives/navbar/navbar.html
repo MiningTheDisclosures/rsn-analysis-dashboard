@@ -1,7 +1,11 @@
 <nav class="navbar">
     <div class="container">
         <div class="navbar-header">
-            <h3>RSN</h3>
+            <h3 class="inline">RSN</h3>
+            <ul class="nav navbar-nav" ng-hide="viewingReport">
+                <li class="inline"><span ui-sref="report">Analysis</span></li>
+                <li class="inline"><span ui-sref="dashboard">Dashboard</span></li>
+            </ul>
         </div>
         <!-- <ul class="nav navbar-nav">
             <li ng-repeat="item in items" ng-show="!item.auth || isLoggedIn()">
@@ -13,6 +17,7 @@
         <ul class="nav navbar-nav" ng-hide="viewingReport">
             <li>
                 <span class="btn btn-primary" ui-sref="company">Add Company</span>
+                <span class="btn btn-primary">Export CSVs</span>
             </li>
         </ul>
     </div>
