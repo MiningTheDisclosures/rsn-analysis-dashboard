@@ -1,0 +1,45 @@
+<section>
+  <div class="col-xs-12">
+    <table class="table table-striped table-bordered">
+      <thead>
+        <th>Company</th>
+        <th>2016</th>
+        <th>2015</th>
+        <th>2014</th>
+        <th>2013</th>
+      </thead>
+      <tbody>
+        <tr ng-repeat="company in companies">
+          <td>{{company.name}} <u ui-sref="company({id: company._id})">Edit</u></td>
+          <td>
+            <span ng-show="getReviewId(company, 2016)" ui-sref="review({id: getReviewId(company, 2016)})">{{getReviewScore(company, 2016) || 'No Score'}}</span>
+            <span ng-show="!getReviewId(company, 2016)" ui-sref="review({company: company._id, year: 2016 })">Add Review</span>
+          </td>
+          <td>
+            <span ng-show="getReviewId(company, 2015)" ui-sref="review({id: getReviewId(company, 2015)})">{{getReviewScore(company, 2015) || 'No Score'}}</span>
+            <span ng-show="!getReviewId(company, 2015)" ui-sref="review({company: company._id, year: 2015 })">Add Review</span>
+          </td>
+          <td>
+            <span ng-show="getReviewId(company, 2014)" ui-sref="review({id: getReviewId(company, 2014)})">{{getReviewScore(company, 2014)}}</span>
+            <span ng-show="!getReviewId(company, 2014)" ui-sref="review({company: company._id, year: 2014 })">Add Review</span>
+          </td>
+          <td>
+            <span ng-show="getReviewId(company, 2013)" ui-sref="review({id: getReviewId(company, 2013)})">{{getReviewScore(company, 2013)}}</span>
+            <span ng-show="!getReviewId(company, 2013)" ui-sref="review({company: company._id, year: 2013 })">Add Review</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+
+
+<!-- <div ng-repeat="company in companies">
+  <h1></h1>
+  <span class="btn btn-xs btn-default" ui-sref="company({id: company._id})">Edit Company</span>
+  <hr>
+  <ul>
+    <li ng-repeat="review in company.reviews" ui-sref="review({id: review.id})">{{review.year}}</li>
+  </ul>
+</div> -->

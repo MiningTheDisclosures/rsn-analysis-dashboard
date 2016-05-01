@@ -1,0 +1,31 @@
+<section>
+  <div class="col-xs-7">
+    <h1>Company Creation/Updating</h1>
+    <hr>
+    <div>
+      <label>Name</label>
+      <input class="form-control" ng-model="company.name" />
+      <label>Industry</label>
+      <input class="form-control" ng-model="company.industry" />
+      <label>Sector</label>
+      <input class="form-control" ng-model="company.sector" />
+      <label>Peer Group</label>
+      <input class="form-control" ng-model="company.peer_group" />
+      <label>CIK</label>
+      <input class="form-control" ng-model="company.cik" />
+      <label>SIC - Code</label>
+      <input class="form-control" ng-model="company.sic.code" />
+      <label>SIC - Description</label>
+      <input class="form-control" ng-model="company.sic.description" />
+      <label>Entity ID</label>
+      <input class="form-control" ng-model="company.entity_id" />
+      <label>Ticker Symbol</label>
+      <input class="form-control" ng-model="company.ticker.symbol" />
+      <label>Exchange</label>
+      <input class="form-control" ng-model="company.ticker.exchange" />
+    </div>
+    <hr>
+    <span class="btn btn-primary" ng-show="company._id === undefined" ng-click="addCompany(company)">Add Company</span>
+    <span class="btn btn-primary" ng-show="company._id !== undefined" ng-click="updateCompany(company)">Update Company</span>
+  </div>
+</section>

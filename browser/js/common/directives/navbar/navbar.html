@@ -1,0 +1,19 @@
+<nav class="navbar">
+    <div class="container">
+        <div class="navbar-header">
+            <h3>RSN</h3>
+        </div>
+        <!-- <ul class="nav navbar-nav">
+            <li ng-repeat="item in items" ng-show="!item.auth || isLoggedIn()">
+                <a ui-sref-active="active" ui-sref="{{ item.state }}">{{ item.label }}</a>
+            </li>
+        </ul> -->
+        <!-- <button ng-show="!user" ui-sref="signup" class="btn login-button">Signup</button> -->
+        <!-- <button ng-show="!user" ui-sref="login" class="btn login-button">Login</button> -->
+        <ul class="nav navbar-nav" ng-hide="viewingReport">
+            <li>
+                <span class="btn btn-primary" ui-sref="company">Add Company</span>
+            </li>
+        </ul>
+    </div>
+</nav>

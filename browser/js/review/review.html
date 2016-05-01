@@ -1,0 +1,34 @@
+<section>
+  <div class="row">
+    <div class="col-xs-12">
+      <h5>{{review.company.name}}</h5>
+      <h5>{{review.year}}</h5>
+      <span class="btn btn-primary" ng-click="updateReview(review)">Update Evaluation</span>
+      <br><br>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-7 evaluation-form">
+      <h3>Evaluation</h3>
+      <hr>
+      <!-- Form -->
+      <div ng-repeat="indicator in indicators">
+        <p>{{indicator.indicator_description}}</p>
+        <select ng-model="review.evaluation.indicator_id">
+          <option value="1">Yes</option>
+          <option value="0">No</option>
+        </select>
+        <hr>
+      </div>
+    </div>
+    <div class="col-sm-5 supporting-documents">
+      <h3>Supporting Documents</h3>
+      <div ng-repeat="document in review.supporting_documents">
+        <hr>
+        <a href="{{document.url}}"><h4>{{document.title}}</h4></a>
+      </div>
+      <hr>
+      <span class="btn btn-primary" ng-click="">Add Supporting Document</span>
+    </div>
+  </div>
+</section>
