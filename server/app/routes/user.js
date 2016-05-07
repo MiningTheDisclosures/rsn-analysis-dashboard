@@ -45,7 +45,7 @@ router.get('/:id', ensureAuthenticated, function (req, res) {
 // Create User
 router.post('/', function(req, res, next){
     var formattedUser = {
-      emails: req.body.email,
+      email: req.body.email,
       password: req.body.password
     }
     User.create(formattedUser)
