@@ -30,15 +30,18 @@ app.config(function ($stateProvider) {
     });
 });
 
-app.controller("ReviewController", function($scope, $http, resolvedReview, IndicatorFactory) {
+app.controller("ReviewController", function($scope, $http, $state, resolvedReview, IndicatorFactory) {
 
   $scope.review = resolvedReview;
   $scope.indicators = IndicatorFactory;
 
-  $scope.updateReview = function(review){
-    $http.put('/api/review', {'review': review})
+  $scope.updateEvaluation = function(review){
+    $http.put('/api/review/updateEvaluation', {
+      'id': review._id,
+      'evaluation': review.evaluation
+    })
     .then(function(data){
-      console.log(data);
+      $state.reload();
     })
   }
 

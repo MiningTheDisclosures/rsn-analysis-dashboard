@@ -1,32 +1,26 @@
 <section>
   <div class="row">
-    <div class="col-xs-12">
-      <h5>{{review.company.name}}</h5>
-      <h5>{{review.year}}</h5>
-      <br><br>
-    </div>
-  </div>
-  <div class="row">
     <div class="col-sm-7 evaluation-form">
-      <h3>Evaluation</h3>
+      <h3>{{review.company.name}} {{review.year}} Evaluation</h3>
       <hr>
       <!-- Form -->
       <div ng-repeat="indicator in indicators track by $index">
         <p>{{indicator.indicator_id}} - {{indicator.indicator_description}}</p>
-        <!-- <pre>{{ review.evaluation[{{indicator.indicator_id}}] }}</pre> -->
-        <input class="" type="checkbox" ng-model="review.evaluation['{{indicator.indicator_id}}']" ng-true-value="1" ng-false-value="0"> Yes / No 
+        <input class="" type="checkbox" ng-model="review.evaluation[indicator.indicator_id]" ng-true-value="1" ng-false-value="0"> Yes / No 
         <hr>
       </div>
-      <span class="btn btn-primary" ng-click="updateReview(review)">Update Evaluation</span>
+      <span class="btn btn-primary" ng-click="updateEvaluation(review)">Update Evaluation</span>
     </div>
+
     <div class="col-sm-5 supporting-documents">
       <h3>Supporting Documents</h3>
       <div ng-repeat="document in review.supporting_documents">
         <hr>
-        <a href="{{document.url}}"><span class="btn btn-md btn-primary">{{document.title}}</span></a>
+        <a href="{{document.url}}" target="_blank"><span class="btn btn-md btn-primary">{{document.title}}</span></a>
       </div>
       <hr>
-      <span class="btn btn-default" ng-click="">Add Supporting Document</span>
+      <span class="btn btn-sm btn-default" ng-click="">Add Supporting Document</span>
     </div>
+
   </div>
 </section>

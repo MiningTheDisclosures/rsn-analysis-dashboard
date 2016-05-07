@@ -162,8 +162,8 @@ router.post('/import', function(req, res, next) {
             "MA5_20_2": row["MA5_20_2"]
           }
         }, function(err, createdReview) {
-          console.log(err);
-          console.log(createdReview);
+          // console.log(err);
+          // console.log(createdReview);
           // Push Supporting Documents into Review
           // createdReview.supporting_documents.push({
           //   type: "SD",
@@ -199,7 +199,7 @@ router.post('/import-supporting-docs', function(req, res, next) {
             if (regex.exec(row.ret_filing_date)[0] == foundCompany.reviews[i].year) {
               // row should be the supporting doc we want to insert into the review
               Review.findById(foundCompany.reviews[i]._id, function(err, foundReview) {
-                console.log(foundReview);
+                // console.log(foundReview);
                 foundReview.supporting_documents.push({
                   title: row.ret_title,
                   description: row.ret_description,
@@ -222,9 +222,12 @@ router.post('/import-supporting-docs', function(req, res, next) {
 
 });
 
-router.put('/', function(req, res, next) {
-  Review.update(req.body.review, function(err, newReview) {
-    res.json(newReview);
+router.put('/updateEvaluation', function(req, res, next) {
+  Review.findById(req.body.id, function(err, foundReview) {
+    // console.log(review);
+    foundReview.evaluation = req.body.evaluation;
+    foundReview.save();
+    res.json(foundReview);
   });
 });
 
