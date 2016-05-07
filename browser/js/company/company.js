@@ -18,6 +18,12 @@ app.config(function ($stateProvider) {
             return {};
           }
         }
+      },
+      onEnter: function($state, AuthService) {
+        // Check to see if we're authed
+        if (!AuthService.isAuthenticated()) {
+          $state.go('report');
+        }
       }
     });
 });
