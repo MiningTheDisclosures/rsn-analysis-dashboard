@@ -15,7 +15,7 @@ app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state) 
 
             scope.viewingReport = true;
             $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams) {
-                scope.viewingReport = $state.includes('report');    
+                scope.viewingReport = $state.includes('report') || $state.includes('signup') || $state.includes('login');
             });
 
             scope.user = null;
