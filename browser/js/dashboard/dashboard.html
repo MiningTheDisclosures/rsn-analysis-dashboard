@@ -9,7 +9,8 @@
         <tr ng-repeat="company in companies">
           <td><p>{{company.name}} <u ui-sref="company({id: company._id})">Edit</u></p></td>
           <td ng-repeat="year in [2016, 2015, 2014]" ng-init="reviewId = getReviewId(company, year); sec_url=getSECUrl(company, year)">
-            <span class="btn btn-sm btn-default disabled">{{getReviewScore(company, year) || 'No Score'}}</span>
+            <!--We currently don't calculate a score so removing for now-->
+            <!--<span class="btn btn-sm btn-default disabled">{{getReviewScore(company, year) || 'No Score'}}</span>-->
             <span class="btn btn-sm btn-default" ng-show="reviewId" ui-sref="review({id: reviewId})">See Review</span>
             <span class="btn btn-sm btn-default" ng-show="!reviewId" ui-sref="review({company: company._id, year: year })">Add Review</span>
             <a class="btn btn-sm btn-success" ng-show="sec_url" href="{{sec_url}}" title="Go to the Special Disclosure page on SEC website">Go to SD</a>
