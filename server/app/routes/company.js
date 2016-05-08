@@ -19,7 +19,6 @@ router.param('id', function(req, res, next, id) {
 
 // Send back a company
 router.get('/:id', function(req, res, next) {
-  console.log("sending back the company")
   res.json(req.company);
 });
 
@@ -27,7 +26,6 @@ router.get('/:id', function(req, res, next) {
 router.get('/', function(req, res, next) {
   Company.find().populate('reviews').exec()
   .then(function(companies) {
-    console.log(companies);
     res.json(companies);
   });
 
@@ -35,7 +33,6 @@ router.get('/', function(req, res, next) {
 
 router.post('/', function(req, res, next) {
   Company.create(req.body.company, function (err, newCompany) {
-    console.log(newCompany);
     res.json(newCompany);
   });
 });

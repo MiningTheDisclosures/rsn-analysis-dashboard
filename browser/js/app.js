@@ -1,5 +1,5 @@
 'use strict';
-window.app = angular.module('RsnAnalysisDashboard', ['ui.router', 'ui.bootstrap', 'fsaPreBuilt']);
+window.app = angular.module('RsnAnalysisDashboard', ['ui.router', 'fsaPreBuilt']);
 
 app.config(function ($urlRouterProvider, $locationProvider) {
     // This turns off hashbang urls (/#about) and changes it to something normal (/about)
