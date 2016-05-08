@@ -3,33 +3,17 @@
     <table class="table table-striped table-bordered">
       <thead>
         <th>Company</th>
-        <th>2016</th>
-        <th>2015</th>
-        <th>2014</th>
+        <th ng-repeat="year in [2016, 2015, 2014]">{{year}}</th>
       </thead>
       <tbody>
         <tr ng-repeat="company in companies">
           <td><p>{{company.name}} <u ui-sref="company({id: company._id})">Edit</u></p></td>
-          <td>
-            <span class="btn btn-sm btn-default disabled">{{getReviewScore(company, 2016) || 'No Score'}}</span>
-            <span class="btn btn-sm btn-primary" ng-show="getReviewId(company, 2016)" ui-sref="review({id: getReviewId(company, 2016)})">See Review</span>
-            <span class="btn btn-sm btn-primary" ng-show="!getReviewId(company, 2016)" ui-sref="review({company: company._id, year: 2016 })">Add Review</span>
-            <span class="btn btn-sm btn-success" ng-show="getSECurl(company, 2016)" ui-sref="getSECurl(company, 2016)" tooltip="go to SEC SD page">Go to SD</span>
-            <span class="btn btn-sm btn-danger disabled" ng-show="!getSECurl(company, 2016)">No SD</span>
-          </td>
-          <td>
-            <span class="btn btn-sm btn-default disabled">{{getReviewScore(company, 2015) || 'No Score'}}</span>
-            <span class="btn btn-sm btn-primary" ng-show="getReviewId(company, 2015)" ui-sref="review({id: getReviewId(company, 2015)})">See Review</span>
-            <span class="btn btn-sm btn-primary" ng-show="!getReviewId(company, 2015)" ui-sref="review({company: company._id, year: 2015 })">Add Review</span>
-            <span class="btn btn-sm btn-success" ng-show="getSECurl(company, 2015)" ui-sref="getSECurl(company, 2015)" tooltip="go to SEC SD page">Go to SD</span>
-            <span class="btn btn-sm btn-danger disabled" ng-show="!getSECurl(company, 2015)">No SD</span>
-          </td>
-          <td>
-            <span class="btn btn-sm btn-default disabled">{{getReviewScore(company, 2014) || 'No Score'}}</span>
-            <span class="btn btn-sm btn-primary" ng-show="getReviewId(company, 2014)" ui-sref="review({id: getReviewId(company, 2014)})">See Review</span>
-            <span class="btn btn-sm btn-primary" ng-show="!getReviewId(company, 2014)" ui-sref="review({company: company._id, year: 2014 })">Add Review</span>
-            <span class="btn btn-sm btn-success" ng-show="getSECurl(company, 2014)" ui-sref="getSECurl(company, 2014)" tooltip="go to SEC SD page">Go to SD</span>
-            <span class="btn btn-sm btn-danger disabled" ng-show="!getSECurl(company, 2014)">No SD</span>
+          <td ng-repeat="year in [2016, 2015, 2014]">
+            <span class="btn btn-sm btn-default disabled">{{getReviewScore(company, year) || 'No Score'}}</span>
+            <span class="btn btn-sm btn-primary" ng-show="getReviewId(company, year)" ui-sref="review({id: getReviewId(company, year)})">See Review</span>
+            <span class="btn btn-sm btn-primary" ng-show="!getReviewId(company, year)" ui-sref="review({company: company._id, year: year })">Add Review</span>
+            <span class="btn btn-sm btn-success" ng-show="getSECurl(company, year)" ui-sref="getSECurl(company, year)" tooltip="go to SEC SD page">Go to SD</span>
+            <span class="btn btn-sm btn-danger disabled" ng-show="!getSECurl(company, year)">No SD</span>
           </td>
         </tr>
       </tbody>
