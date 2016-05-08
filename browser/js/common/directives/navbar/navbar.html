@@ -3,26 +3,26 @@
         <div class="navbar-header">
             <h3 class="inline">RSN</h3>
             <ul class="nav navbar-nav" ng-hide="viewingReport">
-                <li class="inline"><span ui-sref="report">Analysis</span></li>
-                <li class="inline"><span ui-sref="dashboard">Dashboard</span></li>
+                <!--<li class="inline"><span ui-sref="report">Analysis</span></li>-->
+                <li><a href="dashboard">Dashboard</a></li>
             </ul>
         </div>
-        <!-- <ul class="nav navbar-nav">
-            <li ng-repeat="item in items" ng-show="!item.auth || isLoggedIn()">
-                <a ui-sref-active="active" ui-sref="{{ item.state }}">{{ item.label }}</a>
-            </li>
-        </ul> -->
-        <!-- <button ng-show="!user" ui-sref="signup" class="btn login-button">Signup</button> -->
-        <!-- <button ng-show="!user" ui-sref="login" class="btn login-button">Login</button> -->
         <ul class="nav navbar-nav" ng-hide="viewingReport">
             <li>
                 <span class="btn btn-sm btn-primary" ui-sref="company">Add Company</span>
-                <span class="btn btn-sm btn-primary" ng-click="downloadCSV()">Export Data as CSV</span>
+                <!--<span class="btn btn-sm btn-primary" ng-click="downloadCSV()">Export Data as CSV</span>-->
                 <span class="btn btn-sm btn-primary" ng-click="downloadJSON()">Export Data as JSON</span>
             </li>
             <li>
-                <span class="btn btn-sm btn-default" ng-click="logout()">Logout</span>
+                <span class="btn btn-sm btn-default" show="user" ng-click="logout()">Logout</span>
             </li>
+        </ul>
+        
+        <ul class="nav navbar-nav">
+          <li>
+           <!-- <span class="btn btn-sm btn-default" ng-show="!user" ui-sref="signup">Signup</button> -->
+                <span class="btn btn-sm btn-default" ng-show="!user" ui-sref="login">Login</button>
+          </ul>
         </ul>
     </div>
 </nav>

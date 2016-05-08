@@ -12,14 +12,21 @@
       <span class="btn btn-primary" ng-click="updateEvaluation(review)">Update Evaluation</span>
     </div>
 
-    <div class="col-sm-5 supporting-documents">
+    <div class="col-sm-5 supporting-documents" ng-init="sec_sd_url = getSECUrl(review);">
+      <h3>SEC Special Disclosure</h3>
+      <p ng-show="sec_sd_url">The main special disclosure page for {{review.company.name}} is 
+      available at <a href="{{sec_sd_url}}">{{sec_sd_url}}</a></p>
+      <p ng-show="!sec_sd_url">We have not yet detected a SD for {{review.company.name}}.</p>
       <h3>Supporting Documents</h3>
-      <div ng-repeat="document in review.supporting_documents">
-        <hr>
-        <a href="{{document.url}}" target="_blank"><span class="btn btn-md btn-primary">{{document.title}}</span></a>
-      </div>
+      <p ng-show="sec_sd_url">The following document links were automatically downloaded from the SEC special disclosure page.</p>
+      <p ng-show="!sec_sd_url">As no special disclosure has been detected we are not yet aware of any supporting documents.</p>
+      <ul>
+      <li ng-repeat="document in review.supporting_documents">
+        <a href="{{document.url}}" target="_blank">{{document.title}} - {{document.description}}</a>
+      </li>
+      </ul>
       <hr>
-      <span class="btn btn-sm btn-default" ng-click="">Add Supporting Document</span>
+      <!--<span class="btn btn-sm btn-default" ng-click="">Add Supporting Document</span>-->
     </div>
 
   </div>

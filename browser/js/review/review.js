@@ -47,4 +47,13 @@ app.controller("ReviewController", function($scope, $http, $state, resolvedRevie
     })
   }
 
+  $scope.getSECUrl = function(review){
+    for (var i = 0; i < review.company.sec_filings.length; i++) {
+      if (review.company.sec_filings[i].year === review.year){
+        return review.company.sec_filings[i].url;
+      }
+    }
+    return null;
+  }
+
 });
