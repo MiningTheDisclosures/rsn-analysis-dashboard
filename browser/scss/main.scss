@@ -20,36 +20,6 @@ body {
   margin: 0 auto;
 }
 
-th, td {
-  text-align: center !important;
-}
-
-td > p {
-  padding-left: 24px;
-}
-
-.btn-danger {
-  background-color: #FF1744 !important;
-  border-color: #FF1744 !important;
-}
-
-.btn-success {
-  background-color: #00E676 !important;
-  border-color: #00E676 !important;
-}
-
-.btn-default {
-  background-color: #f0f0f0 !important;
-  border-color: #f0f0f0 !important;
-  color: black;
-
-  &:hover {
-    background-color: #e0e0e0 !important;
-    border-color: #e0e0e0 !important;
-    color: black;
-  }
-}
-
 @import 'directives/main';
 @import 'login/main';
 @import 'util.scss';

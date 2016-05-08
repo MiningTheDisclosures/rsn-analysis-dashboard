@@ -36,5 +36,13 @@ app.controller("DashboardController", function($scope, resolvedCompanies) {
     }
     return null;
   }
+  $scope.getSECUrl = function(company, year) {
+    for (var i = 0; i < company.sec_filings.length; i++) {
+      if (company.sec_filings[i].year === year){
+        return company.sec_filings[i].url;
+      }
+    }
+    return null;
+  }
 
 });

@@ -10,10 +10,10 @@
           <td><p>{{company.name}} <u ui-sref="company({id: company._id})">Edit</u></p></td>
           <td ng-repeat="year in [2016, 2015, 2014]">
             <span class="btn btn-sm btn-default disabled">{{getReviewScore(company, year) || 'No Score'}}</span>
-            <span class="btn btn-sm btn-primary" ng-show="getReviewId(company, year)" ui-sref="review({id: getReviewId(company, year)})">See Review</span>
-            <span class="btn btn-sm btn-primary" ng-show="!getReviewId(company, year)" ui-sref="review({company: company._id, year: year })">Add Review</span>
-            <span class="btn btn-sm btn-success" ng-show="getSECurl(company, year)" ui-sref="getSECurl(company, year)" tooltip="go to SEC SD page">Go to SD</span>
-            <span class="btn btn-sm btn-danger disabled" ng-show="!getSECurl(company, year)">No SD</span>
+            <span class="btn btn-sm btn-default" ng-show="getReviewId(company, year)" ui-sref="review({id: getReviewId(company, year)})">See Review</span>
+            <span class="btn btn-sm btn-default" ng-show="!getReviewId(company, year)" ui-sref="review({company: company._id, year: year })">Add Review</span>
+            <a class="btn btn-sm btn-success" ng-show="getSECUrl(company, year)" href="{{getSECUrl(company, year)}}" title="Go to the Special Disclosure page on SEC website">Go to SD</a>
+            <span class="btn btn-sm btn-danger disabled" ng-show="!getSECUrl(company, year)">No SD</span>
           </td>
         </tr>
       </tbody>
