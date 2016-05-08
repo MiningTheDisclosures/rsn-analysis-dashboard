@@ -11,7 +11,6 @@ app.config(function ($stateProvider) {
       resolve: {
         resolvedReview: function($http, $state, $stateParams) {
           if ($stateParams.id) {
-            console.log("Editing Review");
             return $http.get('/api/review/' + $stateParams.id)
             .then(function(res) {
               return res.data;
