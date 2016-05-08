@@ -34,7 +34,7 @@ app.controller("DashboardController", function($scope, resolvedCompanies) {
         return company.reviews[i].total;
       }
     }
-    return 'No Evaluation';
+    return null;
   }
 
 });
