@@ -45,7 +45,7 @@ app.controller("CompanyController", function($scope, $http, $state, resolvedComp
     $scope.getSECDocs = function() {
       $http({
         method: "GET",
-        url: 'http://mtd-sec-api.herokuapp.com/sec_sd_fillings/' + $scope.company.cik
+        url: 'http://mtd-sec-api.herokuapp.com/sec_sd_filings/' + $scope.company.cik
       })
       .then(function(suc){
         console.log(suc);
