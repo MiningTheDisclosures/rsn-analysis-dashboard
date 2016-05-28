@@ -1,31 +1,50 @@
 <section>
-  <div class="col-xs-7">
-    <h1>Company Creation/Updating</h1>
-    <hr>
-    <div>
-      <label>Name</label>
+  <div class="row">
+    <div class="col-sm-12">
+      <h2>Company Creation/Updating</h2>
+      <hr>
+    </div>
+  </div>
+  <div class="row">
+    <!-- Company Info -->
+    <div class="col-sm-7">
+      <h5>Company Info</h5>
+      <hr>
+      <h6>Name</h6>
       <input class="form-control" ng-model="company.name" />
-      <label>Industry</label>
+      <h6>Industry</h6>
       <input class="form-control" ng-model="company.industry" />
-      <label>Sector</label>
+      <h6>Sector</h6>
       <input class="form-control" ng-model="company.sector" />
-      <label>Peer Group</label>
+      <h6>Peer Group</h6>
       <input class="form-control" ng-model="company.peer_group" />
-      <label>CIK</label>
-      <input class="form-control" ng-model="company.cik" />
-      <label>SIC - Code</label>
+      <div ng-class="{ 'has-error' : !company.cik }">
+        <h6>CIK *Required*</h6>
+        <input class="form-control" ng-model="company.cik" />
+      </div>
+      <h6>SIC - Code</h6>
       <input class="form-control" ng-model="company.sic.code" />
-      <label>SIC - Description</label>
+      <h6>SIC - Description</h6>
       <input class="form-control" ng-model="company.sic.description" />
-      <label>Entity ID</label>
+      <h6>Entity ID</h6>
       <input class="form-control" ng-model="company.entity_id" />
-      <label>Ticker Symbol</label>
+      <h6>Ticker Symbol</h6>
       <input class="form-control" ng-model="company.ticker.symbol" />
-      <label>Exchange</label>
+      <h6>Exchange</h6>
       <input class="form-control" ng-model="company.ticker.exchange" />
     </div>
-    <hr>
-    <span class="btn btn-primary" ng-show="company._id === undefined" ng-click="addCompany(company)">Add Company</span>
-    <span class="btn btn-primary" ng-show="company._id !== undefined" ng-click="updateCompany(company)">Update Company</span>
+    <!-- SEC/SD Info -->
+    <div class="col-sm-5">
+      <h5>SEC Docs</h5>
+      <hr>
+      <button class="btn btn-md btn-primary" ng-click="getSECDocs()">Get SEC Docs</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <hr>
+      <span class="btn btn-primary" ng-show="company._id === undefined" ng-click="addCompany(company)" ng-disabled="!company.cik">Add Company</span>
+      <span class="btn btn-primary" ng-show="company._id !== undefined" ng-click="updateCompany(company)" ng-disabled="!company.cik">Update Company</span> 
+    </div>
   </div>
 </section>

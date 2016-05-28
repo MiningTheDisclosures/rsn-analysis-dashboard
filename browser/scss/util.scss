@@ -1,3 +1,10 @@
 .inline {
   display: inline;
 }
+
+.has-error {
+  color: red;
+  .form-control {
+    border-color: red;
+  }
+}
