@@ -1,5 +1,6 @@
 'use strict'
 
+var http = require('http');
 var router = require('express').Router();
 var mongoose = require('mongoose');
 var Company = mongoose.model('Company');
@@ -7,7 +8,7 @@ var Company = mongoose.model('Company');
 
 // Fetch Company
 router.param('id', function(req, res, next, id) {
-  Company.findById(id).exec()
+  Company.findById(id).populate('reviews').exec()
   .then(function(company) {
     if (!company) throw HttpError(404);
     else {
@@ -28,15 +29,16 @@ router.get('/', function(req, res, next) {
   .then(function(companies) {
     res.json(companies);
   });
-
 });
 
+// Add Company
 router.post('/', function(req, res, next) {
   Company.create(req.body.company, function (err, newCompany) {
     res.json(newCompany);
   });
 });
 
+// Update Company
 router.put('/', function(req, res, next) {
   Company.update(req.body.company, function(err, updatedCompany) {
     res.json(updatedCompany);

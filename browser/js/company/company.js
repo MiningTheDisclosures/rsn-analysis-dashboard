@@ -25,6 +25,7 @@ app.config(function ($stateProvider) {
 app.controller("CompanyController", function($scope, $http, $state, resolvedCompany) {
 
     $scope.company = resolvedCompany;
+    console.log(resolvedCompany)
 
     $scope.addCompany = function(company) {
       $http.post('/api/company', {
@@ -47,8 +48,18 @@ app.controller("CompanyController", function($scope, $http, $state, resolvedComp
         method: "GET",
         url: 'https://mtd-sec-api.herokuapp.com/sec_sd_filings/' + $scope.company.cik
       })
-      .then(function(suc){
-        console.log(suc);
+      // Once we get the SD urls
+      .then(function(sucSD){
+        Object.keys(sucSD.data).forEach(function(year){
+          $http({
+            method: "GET",
+            url: 'https://mtd-sec-api.herokuapp.com/sec_supporting_docs/' + $scope.company.cik + '/' + year
+          })
+          // Then get supporting doc info 
+          .then(function(sucDetails) {
+            console.log(sucDetails.data);
+          });
+        })
       });
     }
 
