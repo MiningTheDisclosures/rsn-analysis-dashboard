@@ -23,3 +23,7 @@ body {
 @import 'directives/main';
 @import 'login/main';
 @import 'util.scss';
+
+a {
+  text-decoration: underline;
+}

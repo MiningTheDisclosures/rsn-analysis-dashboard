@@ -32,19 +32,37 @@
       <input class="form-control" ng-model="company.ticker.symbol" />
       <h6>Exchange</h6>
       <input class="form-control" ng-model="company.ticker.exchange" />
-    </div>
-    <!-- SEC/SD Info -->
-    <div class="col-sm-5">
-      <h5>SEC Docs</h5>
-      <hr>
-      <button class="btn btn-md btn-primary" ng-click="getSECDocs()">Get SEC Docs</button>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-12">
       <hr>
       <span class="btn btn-primary" ng-show="company._id === undefined" ng-click="addCompany(company)" ng-disabled="!company.cik">Add Company</span>
       <span class="btn btn-primary" ng-show="company._id !== undefined" ng-click="updateCompany(company)" ng-disabled="!company.cik">Update Company</span> 
+    </div>
+    <div class="col-sm-5 supporting-documents" ng-init="sec_sd_url = getSECUrl(review);">
+      <h3>SEC Special Disclosure</h3>
+      <p ng-show="company.sec_filings.length == 0">We have not detected any special disclosures for {{ company.name || company.cik }}.</p>
+      <p ng-show="company.sec_filings.length > 0">The available special disclosures for {{ company.name }} are:
+        <ul>
+          <li ng-repeat="filing in company.sec_filings">
+            <a href="{{ filing.url }}" target="_blank">{{ filing.year }}</a>
+          </li>
+        </ul>
+      </p>
+      <button class="btn btn-md btn-primary" ng-click="getSECDocs()">Check for new SD Filings</button>
+      <h3>SD Supporting Documents</h3>
+        <div ng-repeat="review in company.reviews"> 
+          <h4>{{ review.year }}</h4>
+          <p><ul>
+          <li ng-repeat="document in review.supporting_documents">
+            <a href="{{document.url}}" target="_blank">{{document.title}} - {{document.description}}</a>
+          </li>
+          </ul></p>
+        </div>
+      <h3>Reviews</h3>
+        <p><ul>
+          <li ng-repeat="review in company.reviews"> 
+            <a ui-sref="review({id: review._id})">{{ review.year }}</a>
+          </li>
+        </ul>
+        </p>
     </div>
   </div>
 </section>

@@ -7,7 +7,7 @@
       </thead>
       <tbody>
         <tr ng-repeat="company in companies">
-          <td><p>{{company.name}} <u ui-sref="company({id: company._id})">Edit</u></p></td>
+          <td><a ui-sref="company({id: company._id})">{{ company.name || company.cik }}</a></td>
           <td ng-repeat="year in [2016, 2015, 2014]" ng-init="reviewId = getReviewId(company, year); sec_url=getSECUrl(company, year)">
             <!--We currently don't calculate a score so removing for now-->
             <!--<span class="btn btn-sm btn-default disabled">{{getReviewScore(company, year) || 'No Score'}}</span>-->
