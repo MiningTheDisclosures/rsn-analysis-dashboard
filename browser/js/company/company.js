@@ -25,7 +25,6 @@ app.config(function ($stateProvider) {
 app.controller("CompanyController", function($scope, $http, $state, resolvedCompany) {
 
     $scope.company = resolvedCompany;
-    console.log(resolvedCompany)
 
     $scope.addCompany = function(company) {
       $http.post('/api/company', {
