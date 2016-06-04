@@ -5,4 +5,4 @@ public
 .DS_Store
 coverage
 data
-server/db
+bootstrap.css

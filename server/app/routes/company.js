@@ -1,6 +1,5 @@
 'use strict'
 
-var http = require('http');
 var router = require('express').Router();
 var mongoose = require('mongoose');
 var Company = mongoose.model('Company');

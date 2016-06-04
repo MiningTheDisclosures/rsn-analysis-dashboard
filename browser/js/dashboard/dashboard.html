@@ -3,11 +3,17 @@
     <table class="table table-striped table-bordered">
       <thead>
         <th>Company</th>
-        <th ng-repeat="year in [2016, 2015, 2014]">{{year}}</th>
+        <th ng-repeat="year in [2016, 2015, 2014]">
+          {{year}}
+          <a ng-href="/api/csv/year/{{year}}" target="_self" download="{{year}}.csv"><span class="btn btn-xs btn-primary pull-right" >Download {{year}} Report</span></a>
+        </th>
       </thead>
       <tbody>
         <tr ng-repeat="company in companies">
-          <td><a ui-sref="company({id: company._id})">{{ company.name || company.cik }}</a></td>
+          <td>
+            <a ui-sref="company({id: company._id})">{{ company.name || company.cik }}</a>
+            <a ng-href="/api/csv/company/{{company.cik}}" target="_self" download="{{year}} - {{company.name}}.csv"><span class="btn btn-xs btn-default pull-right">Download Reviews</span></a>
+          </td>
           <td ng-repeat="year in [2016, 2015, 2014]" ng-init="reviewId = getReviewId(company, year); sec_url=getSECUrl(company, year)">
             <!--We currently don't calculate a score so removing for now-->
             <!--<span class="btn btn-sm btn-default disabled">{{getReviewScore(company, year) || 'No Score'}}</span>-->

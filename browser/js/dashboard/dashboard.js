@@ -17,7 +17,7 @@ app.config(function ($stateProvider) {
     });
 });
 
-app.controller("DashboardController", function($scope, resolvedCompanies) {
+app.controller("DashboardController", function($scope, $http, resolvedCompanies) {
 
   $scope.companies = resolvedCompanies;
   $scope.getReviewId = function(company, year) {
