@@ -193,20 +193,20 @@ router.post('/import-supporting-docs', function(req, res, next) {
 
     var parsedData = JSON.parse(data);
     parsedData.forEach(function(row) {
-      Company.findOne({ cik: row.ret_cik }).populate('reviews').exec(function(err, foundCompany) {
+      Company.findOne({ cik: row.cik }).populate('reviews').exec(function(err, foundCompany) {
         if (foundCompany && foundCompany.reviews) {
           for (var i = 0; i < foundCompany.reviews.length; i++ ) {
-            if (regex.exec(row.ret_filing_date)[0] == foundCompany.reviews[i].year) {
+            if (regex.exec(row.filing_date)[0] == foundCompany.reviews[i].year) {
               // row should be the supporting doc we want to insert into the review
               Review.findById(foundCompany.reviews[i]._id, function(err, foundReview) {
                 // console.log(foundReview);
                 foundReview.supporting_documents.push({
-                  title: row.ret_title,
-                  description: row.ret_description,
-                  sec_accession_number: row.ret_sec_accession_number,
-                  filing_date: row.ret_filing_date,
-                  url: row.ret_url,
-                  company_cik: row.ret_cik
+                  title: row.title,
+                  description: row.description,
+                  sec_accession_number: row.sec_accession_number,
+                  filing_date: row.filing_date,
+                  url: row.url,
+                  company_cik: row.cik
                 });
                 foundReview.save();
               })
