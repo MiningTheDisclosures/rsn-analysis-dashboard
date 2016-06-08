@@ -48,7 +48,12 @@ app.controller("CompanyController", function($scope, $http, $state, resolvedComp
         url: 'https://mtd-sec-api.herokuapp.com/sec_sd_filings/' + $scope.company.cik
       })
       // Once we get the SD urls
-      .then(function(sucSD){
+      .then(function(sucSD) {
+
+        // Count till parallel operations are done
+        var iterations = Object.keys(sucSD.data).length;
+        var completed = 0;
+
         Object.keys(sucSD.data).forEach(function(year){
           $http({
             method: "GET",
@@ -57,9 +62,42 @@ app.controller("CompanyController", function($scope, $http, $state, resolvedComp
           // Then get supporting doc info 
           .then(function(sucDetails) {
             console.log(sucDetails.data);
+            $http({
+              method: 'POST',
+              url: '/api/docs',
+              data: {
+                docs: sucDetails.data,
+                id: $scope.company._id,
+                year: year
+              }
+            }).then(function(success) {
+              completed++; 
+              if (iterations === completed){
+                $state.reload();
+              }
+            })
           });
-        })
+        });
+
       });
+    }
+
+    $scope.getCompanyInfo = function() {
+      var symbol = $scope.company.cik || $scope.company.ticker.symbol;
+      $http({
+        method: "GET",
+        url: 'https://mtd-sec-api.herokuapp.com/company/' + symbol
+      }).then(function(suc) {
+        console.log(suc.data);
+        $scope.company.name = suc.data.company_name;
+        $scope.company.cik = suc.data.cik;
+        $scope.company.sic = {
+          code: suc.data.sic_code,
+          description: suc.data.sic_description
+        }
+      }, function(err) {
+        console.log(err);
+      })
     }
 
 });
