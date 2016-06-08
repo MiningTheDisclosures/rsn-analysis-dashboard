@@ -11,6 +11,17 @@ router.post('/', function (req, res, next) {
   Company.findById(req.body.id).exec()
     .then(function(foundCompany){
 
+      // Add SEC Filings
+      var filings = [];
+      Object.keys(req.body.sec_filings).forEach(function(key){
+        filings.push({
+          url: req.body.sec_filings[key].url,
+          year: req.body.sec_filings[key].year
+        });
+      })
+      foundCompany.sec_filings = filings;
+      foundCompany.save();
+
       // Updating Reviews
       Review.findOne({ company: req.body.id, year: req.body.year }).exec()
         .then(function(foundReview) {

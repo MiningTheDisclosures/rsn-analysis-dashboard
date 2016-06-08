@@ -53,7 +53,6 @@ app.controller("CompanyController", function($scope, $http, $state, resolvedComp
         // Count till parallel operations are done
         var iterations = Object.keys(sucSD.data).length;
         var completed = 0;
-
         Object.keys(sucSD.data).forEach(function(year){
           $http({
             method: "GET",
@@ -61,11 +60,11 @@ app.controller("CompanyController", function($scope, $http, $state, resolvedComp
           })
           // Then get supporting doc info 
           .then(function(sucDetails) {
-            console.log(sucDetails.data);
             $http({
               method: 'POST',
               url: '/api/docs',
               data: {
+                sec_filings: sucSD.data,
                 docs: sucDetails.data,
                 id: $scope.company._id,
                 year: year
