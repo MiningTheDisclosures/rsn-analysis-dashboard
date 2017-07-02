@@ -9,7 +9,7 @@
         </div>
         <ul class="nav navbar-nav" ng-hide="viewingReport">
             <li>
-                <span class="btn btn-sm btn-primary" ui-sref="company">Add Company</span>
+                <span class="btn btn-sm btn-primary" ui-sref="company" ui-sref-opts="{ reload: true }">Add Company</span>
                 <!--<span class="btn btn-sm btn-primary" ng-click="downloadCSV()">Export Data as CSV</span>-->
                 <span class="btn btn-sm btn-primary" ng-click="downloadJSON()">Export Data as JSON</span>
             </li>

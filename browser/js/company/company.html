@@ -10,8 +10,19 @@
     <div class="col-sm-7">
       <h5>Company Info</h5>
       <hr>
-      <h6>Name</h6>
-      <input class="form-control" ng-model="company.name" />
+      <div class="row">
+        <div class="col-md-6">
+          <h6>Name</h6>
+          <input class="form-control" ng-model="company.name" />
+        </div>
+        <div class="col-md-6">
+          <h6>Ticker Symbol</h6>
+          <div class="input-group">
+            <input class="form-control" ng-model="company.ticker.symbol" />
+            <span class="input-group-btn"><button class="btn btn-primary" ng-click="getCompanyInfo()">Autofill Info</button></span>
+          </div>
+        </div>
+      </div>
       <h6>Industry</h6>
       <input class="form-control" ng-model="company.industry" />
       <h6>Sector</h6>
@@ -20,7 +31,10 @@
       <input class="form-control" ng-model="company.peer_group" />
       <div ng-class="{ 'has-error' : !company.cik }">
         <h6>CIK *Required*</h6>
-        <input class="form-control" ng-model="company.cik" />
+        <div class="input-group">
+          <input class="form-control" ng-model="company.cik" />
+          <span class="input-group-btn"><button class="btn btn-primary" ng-click="getCompanyInfo()">Autofill Info</button></span>
+        </div>
       </div>
       <h6>SIC - Code</h6>
       <input class="form-control" ng-model="company.sic.code" />
@@ -28,15 +42,15 @@
       <input class="form-control" ng-model="company.sic.description" />
       <h6>Entity ID</h6>
       <input class="form-control" ng-model="company.entity_id" />
-      <h6>Ticker Symbol</h6>
-      <input class="form-control" ng-model="company.ticker.symbol" />
       <h6>Exchange</h6>
       <input class="form-control" ng-model="company.ticker.exchange" />
       <hr>
       <span class="btn btn-primary" ng-show="company._id === undefined" ng-click="addCompany(company)" ng-disabled="!company.cik">Add Company</span>
       <span class="btn btn-primary" ng-show="company._id !== undefined" ng-click="updateCompany(company)" ng-disabled="!company.cik">Update Company</span> 
     </div>
-    <div class="col-sm-5 supporting-documents" ng-init="sec_sd_url = getSECUrl(review);">
+
+    <!-- If Company Exists, Show reviews/docs -->
+    <div class="col-sm-5 supporting-documents" ng-init="sec_sd_url = getSECUrl(review);" ng-show="company._id">
       <h3>SEC Special Disclosure</h3>
       <p ng-show="company.sec_filings.length == 0">We have not detected any special disclosures for {{ company.name || company.cik }}.</p>
       <p ng-show="company.sec_filings.length > 0">The available special disclosures for {{ company.name }} are:
@@ -64,5 +78,6 @@
         </ul>
         </p>
     </div>
+
   </div>
 </section>
