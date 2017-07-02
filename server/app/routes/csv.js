@@ -13,7 +13,7 @@ var fieldsForYearsNames = ['Year','Company','Industry','Sector','Peer Group','MA
 router.get('/year/:year', function(req, res, next) {
   Review.find({year: req.params.year}).populate('company').exec()
     .then(function(reviews) {
-      json2csv({ data: reviews, fields: fieldsForYears, fieldNames: fieldsForYearsNames, quotes: '' }, function(err, csv) {
+      json2csv({ data: reviews, fields: fieldsForYears, fieldNames: fieldsForYearsNames, quotes: '"' }, function(err, csv) {
         res.send(csv);
       });
     }, function(err) {
